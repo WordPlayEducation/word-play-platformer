@@ -3,10 +3,12 @@ class_name Creator extends HTTPRequest
 var fluid_type = preload("res://main/word_object/fluid/fluid.tscn")
 var inanimate_solid_type = preload("res://main/word_object/inanimate_solid/inanimate_solid.tscn")
 var life_type = preload("res://main/word_object/life/life.tscn")
-	
+
 
 func create_object(word: String) -> WordObject:
-	var ai_response: Dictionary = {}
+	var ai_response: Dictionary = {
+		"type": "fluid"
+	}
 	var word_obj: WordObject = null
 	if "type" not in ai_response: return null
 	
@@ -26,22 +28,24 @@ func create_object(word: String) -> WordObject:
 	# Adding non-type specific properties
 	for property in ai_response:
 		var value = ai_response[property]
+		var hex_check = RegEx.new()
+		hex_check.compile("^#?([a-f0-9]{6}|[a-f0-9]{3})$")
 		
 		# Non-specific properties
 		match property:
 			"text":
-				word_obj.text = ai_response["text"]
+				word_obj.text = value
 			"dynamic":
-				word_obj.dynamic = ai_response["dynamic"]
+				word_obj.dynamic = float(value)
 			"color":
-				word_obj.color = Color(ai_response["color"])
+				word_obj.color = Color(value)
 			"sub_color":
-				word_obj.sub_color = Color(ai_response["sub_color"])
+				word_obj.sub_color = Color(value)
 		
 	return word_obj
 
 
-# Adding fluid specific properties
+# Adding fluid specific properties <- Fluid empty as of now. Planning to add other properties.
 func configure_fluid(obj: WordObject, ai_response: Dictionary):
 	for property in ai_response:
 		var value = ai_response[property]
