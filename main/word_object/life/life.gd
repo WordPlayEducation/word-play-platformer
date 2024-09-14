@@ -13,6 +13,7 @@ func _ready() -> void:
 	super._ready()
 	flip()
 	%Timer.timeout.connect(_on_timeout)
+	set_physics_process(false)
 
 func _on_timeout() -> void:
 	if %RayCast2D.is_colliding() or randf() < 0.2:
@@ -41,6 +42,7 @@ func enable() -> void:
 	#nsakdjsakdkalsjdlk
 	freeze = true
 	sleeping = true
+	set_physics_process(true)
 
 func actual_move_to(new_position: Vector2) -> void:
 	%B.global_position = new_position

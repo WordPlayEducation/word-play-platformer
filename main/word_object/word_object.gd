@@ -78,4 +78,8 @@ func enable() -> void:
 	%CollisionShape2D.disabled = false
 	freeze = false
 	sleeping = false
-	
+
+func spawn() -> void:
+	%AnimationPlayer.stop()
+	%Area2D.rotation = 0
+	%SpawnParticles.set_deferred("emitting", true)

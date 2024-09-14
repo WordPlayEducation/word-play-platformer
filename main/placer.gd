@@ -24,6 +24,7 @@ func place(word_object: WordObject) -> void:
 	target = null
 	
 	word_object.enable()
+	word_object.spawn()
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(target):
