@@ -28,14 +28,15 @@ func create_object(word: String) -> WordObject:
 		var value = ai_response[property]
 		
 		# Non-specific properties
-		if property == "text":
-			word_obj.text = ai_response["text"]
-		elif property == "dynamic":
-			word_obj.dynamic = float(ai_response["dynamic"])
-		elif property == "color":
-			word_obj.color = Color(ai_response["color"])
-		elif property == "sub_color":
-			word_obj.color = Color(ai_response["sub_color"])
+		match property:
+			"text":
+				word_obj.text = ai_response["text"]
+			"dynamic":
+				word_obj.dynamic = ai_response["dynamic"]
+			"color":
+				word_obj.color = Color(ai_response["color"])
+			"sub_color":
+				word_obj.sub_color = Color(ai_response["sub_color"])
 		
 	return word_obj
 
