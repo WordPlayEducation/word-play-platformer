@@ -22,13 +22,14 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if not body in colliding:
 		colliding.append(body)
-		if placing:
+		if placing and has_node("%Cover"):
 			%Cover.visible = true
 func _on_body_exited(body: Node2D) -> void:
 	if body in colliding:
 		colliding.remove_at(colliding.find(body))
 	if len(colliding) == 0:
-		%Cover.visible = false
+		if has_node("%Cover"):
+			%Cover.visible = false
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if r:

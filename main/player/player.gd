@@ -9,7 +9,12 @@ class_name Player extends CharacterBody2D
 @export_range(0.0, 1.0) var acceleration = 0.25
 @export var push_force: float = 80.0
 
-func _physics_process(delta):
+var can_move: bool = true
+
+func _physics_process(delta: float) -> void:
+	if not can_move:
+		return
+	
 	velocity.y += gravity * delta
 	var dir: float = Input.get_axis("ui_left", "ui_right")
 	if dir != 0:

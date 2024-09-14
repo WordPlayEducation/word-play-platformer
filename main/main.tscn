@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://jmbngirn2bc"]
+[gd_scene load_steps=8 format=3 uid="uid://jmbngirn2bc"]
 
 [ext_resource type="PackedScene" uid="uid://bhbw1ggbqmgw" path="res://main/player/player.tscn" id="1_kiugf"]
 [ext_resource type="PackedScene" uid="uid://n6bgkipyc2qp" path="res://main/level/level0/level_0.tscn" id="2_y5ymt"]
 [ext_resource type="Script" path="res://main/placer.gd" id="3_1iut8"]
+[ext_resource type="PackedScene" uid="uid://cmm8dctkge5b" path="res://main/level/level1/level_1.tscn" id="3_g0fei"]
 [ext_resource type="PackedScene" uid="uid://dmocbja62vbhh" path="res://main/ui/ui.tscn" id="3_kob5o"]
 [ext_resource type="Script" path="res://main/level/level_manager.gd" id="3_or2u5"]
 [ext_resource type="Script" path="res://main/creator/creator.gd" id="4_exasg"]
@@ -12,7 +13,7 @@
 [node name="LevelManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_or2u5")
-levels = Array[PackedScene]([ExtResource("2_y5ymt")])
+levels = Array[PackedScene]([ExtResource("2_y5ymt"), ExtResource("3_g0fei")])
 
 [node name="WordObjects" type="Node2D" parent="."]
 unique_name_in_owner = true
