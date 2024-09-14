@@ -21,13 +21,22 @@ text = "[shake][center]dog"
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_0r7lx")
+disabled = true
 
 [node name="Timer" type="Timer" parent="." index="2"]
 unique_name_in_owner = true
 one_shot = true
 autostart = true
 
-[node name="RayCast2D" type="RayCast2D" parent="." index="3"]
+[node name="B" type="CharacterBody2D" parent="." index="3"]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 7
+
+[node name="RayCast2D" type="RayCast2D" parent="B" index="0"]
 unique_name_in_owner = true
 target_position = Vector2(64, 0)
 collision_mask = 7
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="B" index="1"]
+unique_name_in_owner = true

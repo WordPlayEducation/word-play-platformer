@@ -6,6 +6,9 @@ class_name Life extends WordObject
 var speed: float = 256.0
 var move_dir: float = 1.0
 
+var vel: float
+
+
 func _ready() -> void:
 	super._ready()
 	flip()
@@ -18,11 +21,33 @@ func _on_timeout() -> void:
 
 func initialize() -> void:
 	super.initialize()
+	%CollisionShape2D3.shape = %CollisionShape2D.shape
 
 func flip() -> void:
 	move_dir *= -1
 	%RayCast2D.target_position.x = (size.x + 6) * move_dir
 	if randf() < 0.2:
-		linear_velocity = Vector2()
+		vel = 0
+		
 	else:
-		linear_velocity = Vector2(move_dir, 0.0) * speed *randf_range(0.5, 0.7)
+		vel = move_dir * speed *randf_range(0.5, 0.7)
+
+func disable() -> void:
+	%CollisionShape2D.disabled = true
+	freeze = true
+	sleeping = true
+
+func enable() -> void:
+	#nsakdjsakdkalsjdlk
+	freeze = true
+	sleeping = true
+
+func actual_move_to(new_position: Vector2) -> void:
+	%B.global_position = new_position
+
+func _physics_process(delta: float) -> void:
+	%B.velocity.x = lerp(%B.velocity.x, vel, 4.0 * delta)
+	%B.move_and_slide()
+	%B.velocity.y += 4000 * delta
+	if not placing:
+		%Area2D.global_position = %B.global_position
