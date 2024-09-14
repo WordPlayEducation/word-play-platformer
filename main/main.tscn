@@ -1,13 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://jmbngirn2bc"]
+[gd_scene load_steps=8 format=3 uid="uid://jmbngirn2bc"]
 
 [ext_resource type="PackedScene" uid="uid://bhbw1ggbqmgw" path="res://main/player/player.tscn" id="1_kiugf"]
 [ext_resource type="PackedScene" uid="uid://bdgi21enh22hp" path="res://main/level/level.tscn" id="2_p8v2f"]
+[ext_resource type="PackedScene" uid="uid://m4r5mn8cdw3p" path="res://main/word_object/word_object.tscn" id="3_0fxnv"]
 [ext_resource type="Script" path="res://main/placer.gd" id="3_1iut8"]
 [ext_resource type="PackedScene" uid="uid://dmocbja62vbhh" path="res://main/ui/ui.tscn" id="3_kob5o"]
 [ext_resource type="Script" path="res://main/level/level_manager.gd" id="3_or2u5"]
 [ext_resource type="Script" path="res://main/creator/creator.gd" id="4_exasg"]
 
 [node name="Main" type="Node"]
+
+[node name="LevelManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_or2u5")
+
+[node name="Level" parent="LevelManager" instance=ExtResource("2_p8v2f")]
 
 [node name="Player" parent="." instance=ExtResource("1_kiugf")]
 unique_name_in_owner = true
@@ -17,15 +24,12 @@ position = Vector2(125, 163)
 unique_name_in_owner = true
 script = ExtResource("4_exasg")
 
+[node name="WordObject" parent="." instance=ExtResource("3_0fxnv")]
+position = Vector2(161, 359)
+
 [node name="Placer" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_1iut8")
-
-[node name="LevelManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3_or2u5")
-
-[node name="Level" parent="LevelManager" instance=ExtResource("2_p8v2f")]
 
 [node name="UI" parent="." instance=ExtResource("3_kob5o")]
 unique_name_in_owner = true

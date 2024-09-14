@@ -20,8 +20,8 @@ func _physics_process(delta):
 	move_and_slide()
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_speed
-	
 	for i in get_slide_collision_count():
 		var c: KinematicCollision2D = get_slide_collision(i)
+		
 		if c.get_collider() is RigidBody2D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
