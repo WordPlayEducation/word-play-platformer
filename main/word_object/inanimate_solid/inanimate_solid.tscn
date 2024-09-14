@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bov14sd8d0qtj"]
+
+[ext_resource type="PackedScene" uid="uid://m4r5mn8cdw3p" path="res://main/word_object/word_object.tscn" id="1_sx36c"]
+[ext_resource type="Script" path="res://main/word_object/inanimate_solid/inanimate_solid.gd" id="2_7k1uo"]
+
+[node name="InanimateSolid" instance=ExtResource("1_sx36c")]
+script = ExtResource("2_7k1uo")
+physics_type = ""

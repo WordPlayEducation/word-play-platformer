@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://m4r5mn8cdw3p"]
+
+[ext_resource type="Script" path="res://main/word_object/word_object.gd" id="1_306ys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61c7p"]
+
+[node name="WordObject" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_306ys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_61c7p")

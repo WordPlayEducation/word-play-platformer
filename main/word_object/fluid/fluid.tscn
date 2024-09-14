@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnll4ag3dbst6"]
+
+[ext_resource type="PackedScene" uid="uid://m4r5mn8cdw3p" path="res://main/word_object/word_object.tscn" id="1_hnmv3"]
+[ext_resource type="Script" path="res://main/word_object/fluid/fluid.gd" id="2_rn450"]
+
+[node name="Fluid" instance=ExtResource("1_hnmv3")]
+script = ExtResource("2_rn450")

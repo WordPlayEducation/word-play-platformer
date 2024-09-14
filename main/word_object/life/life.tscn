@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6cgpai835y7f"]
+
+[ext_resource type="PackedScene" uid="uid://m4r5mn8cdw3p" path="res://main/word_object/word_object.tscn" id="1_7p2dk"]
+[ext_resource type="Script" path="res://main/word_object/life/life.gd" id="2_3b5jk"]
+
+[node name="Life" instance=ExtResource("1_7p2dk")]
+script = ExtResource("2_3b5jk")
+movement_type = ""
