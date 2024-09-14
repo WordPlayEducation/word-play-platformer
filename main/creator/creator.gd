@@ -6,9 +6,7 @@ var life_type = preload("res://main/word_object/life/life.tscn")
 
 
 func create_object(word: String) -> WordObject:
-	var ai_response: Dictionary = {
-		"type": "fluid"
-	}
+	var ai_response: Dictionary = {}
 	var word_obj: WordObject = null
 	if "type" not in ai_response: return null
 	
@@ -27,20 +25,25 @@ func create_object(word: String) -> WordObject:
 	
 	# Adding non-type specific properties
 	for property in ai_response:
-		var value = ai_response[property]
-		var hex_check = RegEx.new()
-		hex_check.compile("^#?([a-f0-9]{6}|[a-f0-9]{3})$")
+		var value: String = ai_response[property]
 		
 		# Non-specific properties
 		match property:
 			"text":
 				word_obj.text = value
 			"dynamic":
+				if not value.is_valid_float(): break
 				word_obj.dynamic = float(value)
 			"color":
+				if not value.is_valid_hex_number(): break
 				word_obj.color = Color(value)
 			"sub_color":
+				if not value.is_valid_hex_number(): break
 				word_obj.sub_color = Color(value)
+			"size":
+				if value not in ["wide", "tall", "small", "big"]: break
+				word_obj.size = value
+				
 		
 	return word_obj
 
@@ -59,7 +62,8 @@ func configure_inanimate_object(obj: WordObject, ai_response: Dictionary):
 		
 		# Type specific properties
 		match property:
-			"physics:type":
+			"physics_type":
+				if value not in ["mobile", "rigid"]: break
 				obj.physics_type = value
 
 # Adding life specific properties
@@ -70,4 +74,5 @@ func configure_life(obj: WordObject, ai_response: Dictionary):
 		# Type-specific properties
 		match property:
 			"movement_type":
+				if value not in ["land", "air", "fluid"]: break
 				obj.movement_type = value
