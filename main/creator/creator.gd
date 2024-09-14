@@ -52,9 +52,10 @@ func configure_inanimate_object(obj: WordObject, ai_response: Dictionary):
 	for property in ai_response:
 		var value = ai_response[property]
 		
-		# Type-specific properties
-		if property == "physics_type":
-			obj.physics_type = value
+		# Type specific properties
+		match property:
+			"physics:type":
+				obj.physics_type = value
 
 # Adding life specific properties
 func configure_life(obj: WordObject, ai_response: Dictionary):
@@ -62,5 +63,6 @@ func configure_life(obj: WordObject, ai_response: Dictionary):
 		var value = ai_response[property]
 		
 		# Type-specific properties
-		if property == "movement_type":
-			obj.movement_type = value
+		match property:
+			"movement_type":
+				obj.movement_type = value
