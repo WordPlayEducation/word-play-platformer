@@ -8,6 +8,8 @@ var i: int =  0
 
 func create_object(word: String) -> WordObject:
 	var ai_response: Dictionary = TestCases.retrieve()[i]
+	word = ai_response.text
+	
 	i += 1
 	
 	var word_obj: WordObject = null
@@ -32,14 +34,11 @@ func create_object(word: String) -> WordObject:
 		
 		# Non-specific properties
 		match property:
-			"text":
-				word_obj.text = value
 			"dynamic":
 				if not value.is_valid_float(): break
 				word_obj.dynamic = float(value)
 			"color":
 				if not value.substr(1).is_valid_hex_number(): 
-					print("!")
 					break
 				word_obj.color = Color(value)
 			"sub_color":
@@ -48,8 +47,7 @@ func create_object(word: String) -> WordObject:
 			"size":
 				if value not in ["wide", "tall", "small", "big"]: break
 				word_obj.size_and_shape = value
-				
-		
+	word_obj.text = word
 	return word_obj
 
 
