@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Ref="*res://main/ref.gd"
+TestCases="*res://main/test/test_cases.gd"
 
 [display]
 
@@ -46,6 +47,7 @@ place={
 
 [physics]
 
+2d/physics_engine="GodotPhysics2D"
 2d/solver/contact_max_allowed_penetration=0.01
 
 [rendering]

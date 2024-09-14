@@ -14,7 +14,9 @@ func place(word_object: WordObject) -> void:
 	
 	target.placing = true
 	target.global_position = Vector2()
-	while len(target.colliding) > 0:
+	var first_place: bool = true
+	while first_place or len(target.colliding) > 0:
+		first_place = false
 		await placed
 	
 	target.actual_move_to(target.get_node("%Area2D").global_position)
