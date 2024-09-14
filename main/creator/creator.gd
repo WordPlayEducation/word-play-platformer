@@ -8,6 +8,7 @@ func create_object(word: String) -> WordObject:
 	var ai_response: Dictionary = {}
 	var word_obj: WordObject = null
 	
+	# Instantiating and adding type specific properties to the word object
 	if ai_response["type"] == "fluid":
 		word_obj = fluid_type.instantiate()
 		configure_fluid(word_obj, ai_response)
@@ -17,21 +18,35 @@ func create_object(word: String) -> WordObject:
 	elif ai_response["type"] == "life":
 		word_obj = life_type.instantiate()
 		configure_fluid(word_obj, ai_response)
+	else:
+		return null
 	
+	# Adding non-type specific properties
+	for property in ai_response:
+		if property == "text":
+			word_obj.text = ai_response["text"]
+		elif property == "dynamic":
+			word_obj.dynamic = float(ai_response["dynamic"])
+		elif property == "color":
+			word_obj.color = Color(ai_response["color"])
+		elif property == "sub_color":
+			word_obj.color = Color(ai_response["sub_color"])
+		
 	return word_obj
 
+# Adding fluid specific properties
 func configure_fluid(obj: WordObject, ai_response: Dictionary):
 	for property in ai_response:
-		if property == "type": pass
+		pass
 
+# Adding inanimate object specific properties
 func configure_inanimate_object(obj: WordObject, ai_response: Dictionary):
 	for property in ai_response:
-		if property == "type": pass
-		elif property == "physics_type":
+		if property == "physics_type":
 			obj.physics_type = ai_response["physics_type"]
 
+# Adding life specific properties
 func configure_life(obj: WordObject, ai_response: Dictionary):
 	for property in ai_response:
-		if property == "type": pass
-		elif property == "movement_type":
+		if property == "movement_type":
 			obj.movement_type = ai_response["movement_type"]
