@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bhxmtcv40q5jg"]
 
 [ext_resource type="Script" path="res://main/recognizer/recognizer.gd" id="1_im4fa"]
-[ext_resource type="Texture2D" uid="uid://b56pfj42cgnn2" path="res://main/player/player.png" id="2_iahab"]
+[ext_resource type="Texture2D" uid="uid://b8k7vipmntxaf" path="res://main/assets/player.png" id="2_cvpp5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iidkr"]
-size = Vector2(64, 64)
+size = Vector2(64, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yu3jx"]
 size = Vector2(48, 48)
@@ -46,6 +46,7 @@ _data = {
 }
 
 [node name="Recognizer" type="Area2D"]
+modulate = Color(0.89628, 0.909021, 0.972773, 1)
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_im4fa")
@@ -55,17 +56,20 @@ unique_name_in_owner = true
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -33)
 shape = SubResource("RectangleShape2D_iidkr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-56, -1)
 shape = SubResource("RectangleShape2D_yu3jx")
 
 [node name="SpriteHolder" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_iahab")
+position = Vector2(0, -37.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_cvpp5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -73,3 +77,6 @@ libraries = {
 "": SubResource("AnimationLibrary_m0s1y")
 }
 speed_scale = 4.0
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true

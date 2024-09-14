@@ -19,7 +19,7 @@ push_force = 32.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.321527, 0.613797, 0.651947, 1)
+modulate = Color(0.636916, 0.875219, 0.907578, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_en7xm")
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://m4r5mn8cdw3p"]
+[gd_scene load_steps=17 format=3 uid="uid://m4r5mn8cdw3p"]
 
 [ext_resource type="Script" path="res://main/word_object/word_object.gd" id="1_306ys"]
 [ext_resource type="Shader" path="res://main/word_object/background.gdshader" id="2_4uq4u"]
 [ext_resource type="FontFile" uid="uid://dsfgqxm0h10rb" path="res://main/word_object/patrick_hand.ttf" id="2_irqoj"]
 [ext_resource type="Texture2D" uid="uid://bu27cyd527fne" path="res://main/pixel.png" id="3_00vjl"]
 [ext_resource type="Texture2D" uid="uid://bnt5iad57waf" path="res://main/circle.png" id="5_lt41n"]
+[ext_resource type="AudioStream" uid="uid://dq18ehbyklty4" path="res://main/creator/untitled.ogg" id="6_du6p2"]
 
 [sub_resource type="Curve" id="Curve_0h5ac"]
 _data = [Vector2(0, 0.000640631), 0.0, 0.0, 0, 0, Vector2(0.183784, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -65,6 +66,11 @@ _data = {
 "RESET": SubResource("Animation_ay1yr"),
 "shake": SubResource("Animation_vbh2h")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ao4l3"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("6_du6p2")
 
 [node name="WordObject" type="RigidBody2D"]
 collision_layer = 4
@@ -133,7 +139,7 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = SubResource("FontVariation_lda0n")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[shake][center]table"
+text = "[shake rate=10][center]table"
 scroll_active = false
 autowrap_mode = 0
 tab_size = 0
@@ -156,3 +162,7 @@ libraries = {
 }
 autoplay = "shake"
 speed_scale = 6.0
+
+[node name="PopSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_ao4l3")

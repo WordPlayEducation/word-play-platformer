@@ -7,7 +7,7 @@
 [node name="Level0" instance=ExtResource("1_ufw60")]
 
 [node name="Recognizer" parent="." index="4" instance=ExtResource("2_lwe4m")]
-position = Vector2(513, 368)
+position = Vector2(514, 353)
 
 [node name="StoryLabel" parent="." index="5" instance=ExtResource("2_yv0iq")]
 offset_left = 109.0

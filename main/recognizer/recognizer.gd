@@ -6,6 +6,8 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		body = body.get_parent()
 	if not body is WordObject:
 		return
 	if Ref.creator.ask(question, body.text):
