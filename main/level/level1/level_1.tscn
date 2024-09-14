@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmm8dctkge5b"]
+
+[ext_resource type="PackedScene" uid="uid://bdgi21enh22hp" path="res://main/level/level.tscn" id="1_ig0il"]
+
+[node name="Level1" instance=ExtResource("1_ig0il")]
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.395163, 0.181695, 0.138378, 1)
+
+[node name="BasicTileMapLayer" parent="." index="1"]
+modulate = Color(0.245495, 0.0798674, 0.130152, 1)
+
+[node name="Goal" parent="." index="2"]
+position = Vector2(642, 281)
