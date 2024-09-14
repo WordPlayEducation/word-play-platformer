@@ -5,4 +5,4 @@
 
 [node name="InanimateSolid" instance=ExtResource("1_sx36c")]
 script = ExtResource("2_7k1uo")
-physics_type = ""
+physics_type = "mobile"

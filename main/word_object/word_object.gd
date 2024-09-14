@@ -1,16 +1,17 @@
 class_name WordObject extends RigidBody2D
 
 @export var word: String
-@export var dynamic: float 
-@export var color: Color
-@export var subcolor: Color
-@export_enum("wide", "tall", "small", "big") var size_and_shape: String
+@export var dynamic: float = 0.5
+@export var color: Color = Color("#888888")
+@export var subcolor: Color = Color("#555555")
+@export_enum("wide", "tall", "small", "big") var size_and_shape: String = "small"
 
 var colliding: Array[Node2D]
 
 var p: Vector2
 var r: bool
 
+var size: Vector2 = Vector2(64, 0)
 var placing: bool 
 
 func _ready() -> void:
@@ -36,7 +37,6 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		%Area2D.position = Vector2()
 
 func initialize() -> void:
-	var size: Vector2 
 	match size_and_shape:
 		"wide":
 			size = Vector2(64, 32)

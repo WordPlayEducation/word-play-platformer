@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jmbngirn2bc"]
+[gd_scene load_steps=9 format=3 uid="uid://jmbngirn2bc"]
 
 [ext_resource type="PackedScene" uid="uid://bhbw1ggbqmgw" path="res://main/player/player.tscn" id="1_kiugf"]
 [ext_resource type="PackedScene" uid="uid://bdgi21enh22hp" path="res://main/level/level.tscn" id="2_p8v2f"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://main/placer.gd" id="3_1iut8"]
 [ext_resource type="PackedScene" uid="uid://dmocbja62vbhh" path="res://main/ui/ui.tscn" id="3_kob5o"]
 [ext_resource type="Script" path="res://main/level/level_manager.gd" id="3_or2u5"]
+[ext_resource type="PackedScene" uid="uid://c6cgpai835y7f" path="res://main/word_object/life/life.tscn" id="3_u4vk7"]
 [ext_resource type="Script" path="res://main/creator/creator.gd" id="4_exasg"]
 
 [node name="Main" type="Node"]
@@ -19,9 +20,13 @@ script = ExtResource("3_or2u5")
 [node name="WordObjects" type="Node2D" parent="."]
 unique_name_in_owner = true
 
+[node name="Life" parent="WordObjects" instance=ExtResource("3_u4vk7")]
+position = Vector2(324, 342)
+collision_mask = 3
+
 [node name="Table" parent="WordObjects" instance=ExtResource("3_0fxnv")]
 unique_name_in_owner = true
-position = Vector2(169, 346)
+position = Vector2(444, 347)
 
 [node name="Player" parent="." instance=ExtResource("1_kiugf")]
 unique_name_in_owner = true

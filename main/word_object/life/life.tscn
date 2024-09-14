@@ -1,8 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6cgpai835y7f"]
+[gd_scene load_steps=5 format=3 uid="uid://c6cgpai835y7f"]
 
 [ext_resource type="PackedScene" uid="uid://m4r5mn8cdw3p" path="res://main/word_object/word_object.tscn" id="1_7p2dk"]
 [ext_resource type="Script" path="res://main/word_object/life/life.gd" id="2_3b5jk"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tjl5p"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0r7lx"]
+size = Vector2(64, 64)
+
 [node name="Life" instance=ExtResource("1_7p2dk")]
+physics_material_override = SubResource("PhysicsMaterial_tjl5p")
+lock_rotation = true
 script = ExtResource("2_3b5jk")
-movement_type = ""
+movement_type = "land"
+activity = 0.1
+
+[node name="Label" parent="Area2D/MarginContainer" index="0"]
+text = "[shake][center]dog"
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_0r7lx")
+
+[node name="Timer" type="Timer" parent="." index="2"]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="3"]
+unique_name_in_owner = true
+target_position = Vector2(64, 0)
+collision_mask = 7

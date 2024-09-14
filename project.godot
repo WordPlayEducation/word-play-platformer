@@ -44,6 +44,10 @@ place={
 2d_physics/layer_2="player"
 2d_physics/layer_3="word_object"
 
+[physics]
+
+2d/solver/contact_max_allowed_penetration=0.01
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

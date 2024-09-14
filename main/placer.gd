@@ -7,6 +7,7 @@ var target: WordObject
 
 func place(word_object: WordObject) -> void:
 	%WordObjects.add_child(word_object)
+	word_object.initialize()
 	word_object.disable()
 	
 	target = word_object
@@ -18,9 +19,7 @@ func place(word_object: WordObject) -> void:
 	
 	target.actual_move_to(target.get_node("%Area2D").global_position)
 	target.placing = false
-	
 	target = null
-	
 	
 	word_object.enable()
 

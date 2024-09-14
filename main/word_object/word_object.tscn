@@ -16,7 +16,7 @@ base_font = ExtResource("2_irqoj")
 
 [node name="WordObject" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 7
 can_sleep = false
 script = ExtResource("1_306ys")
 

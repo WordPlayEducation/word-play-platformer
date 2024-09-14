@@ -8,12 +8,12 @@ func _ready() -> void:
 func _prompt_entered(word: String) -> void:
 	if generating:
 		return
+	%Entry.release_focus()
 	generating = true
 	
 	%Entry.editable = false
 	
-	var word_object: WordObject = %Table # await Ref.creator.create_object(word)
-	
+	var word_object: WordObject = await Ref.creator.create_object(word)
 	
 	await Ref.placer.place(word_object)
 	
