@@ -9,15 +9,17 @@ radius = 16.0
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
+floor_block_on_wall = false
 script = ExtResource("1_8prs4")
 speed = 288
 jump_speed = -820
 friction = 0.7
 acceleration = 0.7
-push_force = 8.0
+push_force = 32.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.7875, 0.25, 1, 1)
+unique_name_in_owner = true
+modulate = Color(0.321527, 0.613797, 0.651947, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_en7xm")
 

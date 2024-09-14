@@ -16,6 +16,13 @@ script = ExtResource("3_or2u5")
 
 [node name="Level" parent="LevelManager" instance=ExtResource("2_p8v2f")]
 
+[node name="WordObjects" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Table" parent="WordObjects" instance=ExtResource("3_0fxnv")]
+unique_name_in_owner = true
+position = Vector2(169, 346)
+
 [node name="Player" parent="." instance=ExtResource("1_kiugf")]
 unique_name_in_owner = true
 position = Vector2(125, 163)
@@ -23,9 +30,6 @@ position = Vector2(125, 163)
 [node name="Creator" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_exasg")
-
-[node name="WordObject" parent="." instance=ExtResource("3_0fxnv")]
-position = Vector2(161, 359)
 
 [node name="Placer" type="Node" parent="."]
 unique_name_in_owner = true

@@ -1,10 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://m4r5mn8cdw3p"]
+[gd_scene load_steps=8 format=3 uid="uid://m4r5mn8cdw3p"]
 
 [ext_resource type="Script" path="res://main/word_object/word_object.gd" id="1_306ys"]
+[ext_resource type="Shader" path="res://main/word_object/background.gdshader" id="2_4uq4u"]
 [ext_resource type="FontFile" uid="uid://dsfgqxm0h10rb" path="res://main/word_object/patrick_hand.ttf" id="2_irqoj"]
+[ext_resource type="Texture2D" uid="uid://bu27cyd527fne" path="res://main/pixel.png" id="3_00vjl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_61c7p"]
-size = Vector2(64, 32)
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06gaf"]
+shader = ExtResource("2_4uq4u")
 
 [sub_resource type="FontVariation" id="FontVariation_lda0n"]
 base_font = ExtResource("2_irqoj")
@@ -12,35 +17,60 @@ base_font = ExtResource("2_irqoj")
 [node name="WordObject" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 3
+can_sleep = false
 script = ExtResource("1_306ys")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 7
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_61c7p")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+unique_name_in_owner = true
+modulate = Color(0.47, 0.315527, 0.1504, 1)
+material = SubResource("ShaderMaterial_06gaf")
+scale = Vector2(64, 64)
+texture = ExtResource("3_00vjl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Area2D"]
 custom_minimum_size = Vector2(32, 32)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
+offset_left = -32.0
 offset_top = -20.0
-offset_right = 20.0
+offset_right = 32.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="RichTextLabel" parent="MarginContainer"]
+[node name="Label" type="RichTextLabel" parent="Area2D/MarginContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(64, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(0.56, 0.335347, 0.0952, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = SubResource("FontVariation_lda0n")
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[shake][center]table"
-fit_content = true
+scroll_active = false
 autowrap_mode = 0
+tab_size = 0
+
+[node name="Cover" type="Sprite2D" parent="Area2D"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.91, 0.2093, 0.361118, 0.396078)
+scale = Vector2(64, 64)
+texture = ExtResource("3_00vjl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_61c7p")
