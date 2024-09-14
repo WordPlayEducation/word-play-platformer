@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy7cifdxv74yg"]
+
+[ext_resource type="Script" path="res://main/ui/story_label.gd" id="1_2gvme"]
+
+[node name="StoryLabel" type="Label"]
+offset_right = 137.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "Give him a friend!"
+script = ExtResource("1_2gvme")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

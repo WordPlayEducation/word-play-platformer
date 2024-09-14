@@ -79,3 +79,6 @@ func configure_life(obj: WordObject, ai_response: Dictionary):
 			"movement_type":
 				if value not in ["land", "air", "fluid"]: break
 				obj.movement_type = value
+
+func ask(question: String, answer: String) -> bool:
+	return true

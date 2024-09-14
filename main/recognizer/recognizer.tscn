@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhxmtcv40q5jg"]
+
+[ext_resource type="Script" path="res://main/recognizer/recognizer.gd" id="1_im4fa"]
+[ext_resource type="Texture2D" uid="uid://b56pfj42cgnn2" path="res://main/player/player.png" id="2_iahab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iidkr"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yu3jx"]
+size = Vector2(48, 48)
+
+[sub_resource type="Animation" id="Animation_gx300"]
+resource_name = "kill"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p8qy0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m0s1y"]
+_data = {
+"RESET": SubResource("Animation_p8qy0"),
+"kill": SubResource("Animation_gx300")
+}
+
+[node name="Recognizer" type="Area2D"]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_im4fa")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_iidkr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-56, -1)
+shape = SubResource("RectangleShape2D_yu3jx")
+
+[node name="SpriteHolder" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteHolder"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_iahab")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_m0s1y")
+}
+speed_scale = 4.0

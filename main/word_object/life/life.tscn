@@ -14,7 +14,7 @@ physics_material_override = SubResource("PhysicsMaterial_tjl5p")
 lock_rotation = true
 script = ExtResource("2_3b5jk")
 movement_type = "land"
-activity = 0.1
+activity = 0.5
 
 [node name="Label" parent="Area2D/MarginContainer" index="0"]
 text = "[shake][center]dog"
