@@ -1,6 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmocbja62vbhh"]
+[gd_scene load_steps=5 format=3 uid="uid://dmocbja62vbhh"]
 
 [ext_resource type="Script" path="res://main/ui/ui.gd" id="1_wwf5g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wymse"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_viuwc"]
+bg_color = Color(0.755386, 0.755386, 0.755386, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.733005, 0.733005, 0.733005, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3caf"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 2
+border_color = Color(0.680321, 0.680321, 0.680321, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [node name="UI" type="MarginContainer"]
 anchors_preset = 15
@@ -18,11 +62,22 @@ script = ExtResource("1_wwf5g")
 layout_mode = 2
 size_flags_vertical = 8
 
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Type in any word: "
+
 [node name="Entry" type="LineEdit" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Type your word here"
+theme_override_colors/selection_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/caret_color = Color(0.31185, 0.31185, 0.31185, 1)
+theme_override_colors/font_placeholder_color = Color(0.78, 0.78, 0.78, 1)
+theme_override_colors/font_color = Color(0.386757, 0.386757, 0.386757, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_wymse")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_viuwc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_r3caf")
+placeholder_text = "Ex.: Dog"
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true

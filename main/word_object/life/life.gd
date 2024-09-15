@@ -1,13 +1,12 @@
 class_name Life extends WordObject
 
 @export_enum("land", "air", "fluid") var movement_type: String = "land"
-@export var activity: float = 0.1
+@export var activity: float = 0.5
 
 var speed: float = 256.0
 var move_dir: float = 1.0
 
 var vel: float
-
 
 func _ready() -> void:
 	super._ready()
@@ -22,6 +21,7 @@ func _on_timeout() -> void:
 
 func initialize() -> void:
 	super.initialize()
+	speed = (activity * 0.4 + 0.8) * 256.0
 	%CollisionShape2D3.shape = %CollisionShape2D.shape
 
 func flip() -> void:
@@ -50,6 +50,7 @@ func actual_move_to(new_position: Vector2) -> void:
 func _physics_process(delta: float) -> void:
 	%B.velocity.x = lerp(%B.velocity.x, vel, 4.0 * delta)
 	%B.move_and_slide()
-	%B.velocity.y += 4000 * delta
+	if not movement_type == "air":
+		%B.velocity.y += 4000 * delta
 	if not placing:
 		%Area2D.global_position = %B.global_position

@@ -9,4 +9,4 @@ collision_mask = 1
 script = ExtResource("2_rn450")
 
 [node name="Label" parent="Area2D/MarginContainer" index="0"]
-text = "[wave][shake][center]table"
+text = "[wave amp=50.0][shake][center]table"

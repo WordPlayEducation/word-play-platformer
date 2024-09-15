@@ -59,7 +59,7 @@ func initialize() -> void:
 	%Label.custom_minimum_size = size
 	%Label.size = size
 	
-	%Label.text = "[shake][center]" + text
+	%Label.text = "[shake rate=%.2f][center] %s" % [dynamic + 0.1 * 20.0, text]
 	%Sprite2D.modulate = color
 	%Sprite2D.modulate.a = 0.5
 
@@ -83,3 +83,4 @@ func spawn() -> void:
 	%AnimationPlayer.stop()
 	%Area2D.rotation = 0
 	%SpawnParticles.set_deferred("emitting", true)
+	%PopSound.play()
