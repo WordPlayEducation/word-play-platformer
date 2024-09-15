@@ -16,6 +16,8 @@ func load_level(id: int) -> void:
 	add_child(loaded_level)
 	Ref.player.set_deferred("can_move", true)
 	Ref.player.global_position = loaded_level.get_node("%Entrance").global_position
+	
+	await Ref.trans.trans_out()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset") and not Ref.placer.placing:
@@ -24,8 +26,12 @@ func _input(event: InputEvent) -> void:
 func end_level(next: bool = true) -> void:
 	Ref.player.can_move = false
 	
+	await Ref.trans.trans_in()
+	
 	for object in %WordObjects.get_children():
 		object.queue_free.call_deferred()
+	
+
 	
 	if next:
 		current_id += 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://m4r5mn8cdw3p"]
+[gd_scene load_steps=16 format=3 uid="uid://m4r5mn8cdw3p"]
 
 [ext_resource type="Script" path="res://main/word_object/word_object.gd" id="1_306ys"]
 [ext_resource type="Shader" path="res://main/word_object/background.gdshader" id="2_4uq4u"]
@@ -34,6 +34,28 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_vbh2h"]
 resource_name = "shake"
@@ -51,9 +73,35 @@ tracks/0/keys = {
 "values": [-0.0349066, 0.0349066, -0.0349066]
 }
 
+[sub_resource type="Animation" id="Animation_4dut5"]
+resource_name = "pop_in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 0.9, -0.25, 0, 0.25, 0, 1.04, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.666667, 0.833333, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 0.9, -0.25, 0, 0.25, 0, 1.04, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.666667, 0.833333, 1)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_732ho"]
 _data = {
 "RESET": SubResource("Animation_ay1yr"),
+"pop_in": SubResource("Animation_4dut5"),
 "shake": SubResource("Animation_vbh2h")
 }
 
@@ -147,8 +195,8 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_732ho")
 }
-autoplay = "shake"
-speed_scale = 6.0
+autoplay = "pop_in"
+speed_scale = 3.0
 
 [node name="PopSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

@@ -15,3 +15,4 @@ func initialize() -> void:
 		"rigid":
 			gravity_scale = 0
 			mass = 999999999999
+			linear_damp = 100

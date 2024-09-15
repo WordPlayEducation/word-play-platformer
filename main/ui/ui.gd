@@ -19,6 +19,8 @@ func _prompt_entered() -> void:
 	
 	if word_object:
 		await Ref.placer.place(word_object)
+	else:
+		%ErrorPlayer.play()
 	
 	%Entry.editable = true
 	%Button.disabled = false

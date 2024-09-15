@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmocbja62vbhh"]
+[gd_scene load_steps=8 format=3 uid="uid://dmocbja62vbhh"]
 
 [ext_resource type="Script" path="res://main/ui/ui.gd" id="1_wwf5g"]
 [ext_resource type="AudioStream" uid="uid://bdvh8rouxlpl4" path="res://main/ui/cclick.wav" id="2_6uxog"]
+[ext_resource type="AudioStream" uid="uid://30yk0gc734t4" path="res://main/creator/error.ogg" id="3_lg1l8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wymse"]
 bg_color = Color(1, 1, 1, 1)
@@ -107,3 +108,8 @@ text = "Create"
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_eg6n8")
 volume_db = -8.0
+
+[node name="ErrorPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_lg1l8")
+volume_db = -2.0

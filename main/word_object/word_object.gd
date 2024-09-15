@@ -18,6 +18,9 @@ var placing: bool
 func _ready() -> void:
 	%Area2D.body_entered.connect(_on_body_entered)
 	%Area2D.body_exited.connect(_on_body_exited)
+	
+	await %AnimationPlayer.animation_finished
+	%AnimationPlayer.play("shake")
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body in colliding:
@@ -91,5 +94,6 @@ func enable() -> void:
 func spawn() -> void:
 	%AnimationPlayer.stop()
 	%Area2D.rotation = 0
+	%Area2D.scale = Vector2(1, 1)
 	%SpawnParticles.set_deferred("emitting", true)
 	%PopSound.play()
