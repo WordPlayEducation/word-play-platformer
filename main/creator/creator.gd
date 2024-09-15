@@ -85,7 +85,10 @@ func configure_fluid(obj: WordObject, ai_response: Dictionary):
 		
 		property = clean_string(property)
 		
-		pass
+		match property:
+			"viscosity":
+				if not value.is_valid_float(): break
+				obj.viscosity = clamp(float(value), 0.0, 1.0)
 
 # Adding inanimate object specific properties
 func configure_inanimate_object(obj: WordObject, ai_response: Dictionary):
@@ -112,6 +115,9 @@ func configure_life(obj: WordObject, ai_response: Dictionary):
 			"movement_type":
 				if value not in ["land", "air", "fluid"]: break
 				obj.movement_type = value
+			"activity":
+				if not value.is_valid_float(): break
+				obj.activity = clamp(float(value), 0.0, 1.0)
 
 func clean_string(s: String) -> String:
 	return s.replace(" ", "_").to_lower()

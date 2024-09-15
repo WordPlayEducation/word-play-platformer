@@ -21,7 +21,10 @@ func _on_timeout() -> void:
 
 func initialize() -> void:
 	super.initialize()
-	speed = (activity * 0.4 + 0.8) * 256.0
+	if activity <= 0.1:
+		speed = 0
+	else:
+		speed = (activity * 0.8 + 0.8) * 256.0
 	%CollisionShape2D3.shape = %CollisionShape2D.shape
 
 func flip() -> void:

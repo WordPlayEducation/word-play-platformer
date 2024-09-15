@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnll4ag3dbst6"]
+[gd_scene load_steps=6 format=3 uid="uid://cnll4ag3dbst6"]
 
 [ext_resource type="PackedScene" uid="uid://m4r5mn8cdw3p" path="res://main/word_object/word_object.tscn" id="1_hnmv3"]
 [ext_resource type="Script" path="res://main/word_object/fluid/fluid.gd" id="2_rn450"]
@@ -6,14 +6,31 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8ynvf"]
 shader = ExtResource("3_gawcu")
+shader_parameter/viscosity = 0.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x0qov"]
+radius = 64.0
 
 [node name="Fluid" instance=ExtResource("1_hnmv3")]
 collision_layer = 0
 collision_mask = 1
 script = ExtResource("2_rn450")
+viscosity = 0.0
 
 [node name="Sprite2D" parent="Area2D" index="2"]
+z_index = 1
 material = SubResource("ShaderMaterial_8ynvf")
 
 [node name="Label" parent="Area2D/MarginContainer" index="0"]
 text = "[wave amp=50.0][shake][center]table"
+
+[node name="Cover" parent="Area2D" index="4"]
+z_index = 2
+
+[node name="LiquidArea" type="Area2D" parent="." index="4"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LiquidArea" index="0"]
+shape = SubResource("CircleShape2D_x0qov")

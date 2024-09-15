@@ -48,6 +48,8 @@ func initialize() -> void:
 			size = Vector2(32, 32)
 		"big":
 			size = Vector2(64, 64)
+		"very_big":
+			size = Vector2(128, 128)
 	%Sprite2D.scale = size
 	%Cover.scale = size 
 	

@@ -10,11 +10,11 @@ class_name Player extends CharacterBody2D
 @export var push_force: float = 80.0
 
 var can_move: bool = true
+var double_jump: bool = false
 
 func _physics_process(delta: float) -> void:
 	if not can_move:
 		return
-	
 	velocity.y += gravity * delta
 	var dir: float = Input.get_axis("ui_left", "ui_right")
 	if dir != 0:
@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	%Sprite2D.rotation = lerp(%Sprite2D.rotation, 0.15 * sign(dir), delta * 16.0)
 	
 	move_and_slide()
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and (double_jump or is_on_floor()):
 		velocity.y = jump_speed
 	for i in get_slide_collision_count():
 		var c: KinematicCollision2D = get_slide_collision(i)
