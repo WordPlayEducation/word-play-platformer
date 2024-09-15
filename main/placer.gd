@@ -3,9 +3,11 @@ class_name Placer extends Node
 
 signal placed
 
+var placing: bool = false
 var target: WordObject
 
 func place(word_object: WordObject) -> void:
+	placing = true
 	%WordObjects.add_child(word_object)
 	word_object.initialize()
 	word_object.disable()
@@ -25,6 +27,7 @@ func place(word_object: WordObject) -> void:
 	
 	word_object.enable()
 	word_object.spawn()
+	placing = false
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(target):

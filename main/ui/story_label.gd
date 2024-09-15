@@ -8,6 +8,7 @@ var sentence: String = ""
 func _ready() -> void:
 	%Timer.timeout.connect(_on_timeout)
 	_on_timeout()
+	text = ""
 
 func _on_timeout() -> void:
 	var tween: Tween = get_tree().create_tween()

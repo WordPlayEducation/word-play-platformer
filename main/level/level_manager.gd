@@ -17,11 +17,16 @@ func load_level(id: int) -> void:
 	Ref.player.set_deferred("can_move", true)
 	Ref.player.global_position = loaded_level.get_node("%Entrance").global_position
 
-func end_level() -> void:
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("reset") and not Ref.placer.placing:
+		end_level(false)
+
+func end_level(next: bool = true) -> void:
 	Ref.player.can_move = false
 	
 	for object in %WordObjects.get_children():
 		object.queue_free.call_deferred()
 	
-	current_id += 1
+	if next:
+		current_id += 1
 	load_level.call_deferred(current_id)
