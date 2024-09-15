@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jmbngirn2bc"]
+[gd_scene load_steps=9 format=3 uid="uid://jmbngirn2bc"]
 
 [ext_resource type="PackedScene" uid="uid://bhbw1ggbqmgw" path="res://main/player/player.tscn" id="1_kiugf"]
 [ext_resource type="PackedScene" uid="uid://n6bgkipyc2qp" path="res://main/level/level0/level_0.tscn" id="2_y5ymt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dmocbja62vbhh" path="res://main/ui/ui.tscn" id="3_kob5o"]
 [ext_resource type="Script" path="res://main/level/level_manager.gd" id="3_or2u5"]
 [ext_resource type="Script" path="res://main/creator/creator.gd" id="4_exasg"]
+[ext_resource type="AudioStream" uid="uid://bkdd465gjmk3s" path="res://main/level/JazzBrunch.mp3" id="8_wxwom"]
 
 [node name="Main" type="Node"]
 
@@ -32,3 +33,8 @@ script = ExtResource("3_1iut8")
 
 [node name="UI" parent="." instance=ExtResource("3_kob5o")]
 unique_name_in_owner = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_wxwom")
+volume_db = -8.0
+autoplay = true
