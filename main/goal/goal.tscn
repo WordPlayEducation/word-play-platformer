@@ -101,3 +101,8 @@ energy = 0.4
 range_layer_min = -4
 range_layer_max = 4
 texture = ExtResource("5_1wiir")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
