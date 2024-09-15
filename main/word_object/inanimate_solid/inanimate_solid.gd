@@ -1,6 +1,7 @@
 class_name InanimateSolid extends WordObject
 
 @export_enum("mobile", "rigid") var physics_type: String = "mobile"
+@export var slippery: float
 
 func _ready() -> void:
 	super._ready()

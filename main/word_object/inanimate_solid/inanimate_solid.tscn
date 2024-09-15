@@ -7,3 +7,4 @@
 linear_damp = 100.0
 script = ExtResource("2_7k1uo")
 physics_type = "mobile"
+slippery = 0.0

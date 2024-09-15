@@ -47,10 +47,15 @@ func enable() -> void:
 func actual_move_to(new_position: Vector2) -> void:
 	%B.global_position = new_position
 
+var time: float
+
 func _physics_process(delta: float) -> void:
 	%B.velocity.x = lerp(%B.velocity.x, vel, 4.0 * delta)
 	%B.move_and_slide()
 	if not movement_type == "air":
 		%B.velocity.y += 4000 * delta
+	else:
+		time += delta
+		%B.velocity.y = 64.0 * sin(time * 8.0)
 	if not placing:
 		%Area2D.global_position = %B.global_position

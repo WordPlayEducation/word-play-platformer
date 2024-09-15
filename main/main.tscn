@@ -36,5 +36,4 @@ unique_name_in_owner = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_wxwom")
-volume_db = -8.0
 autoplay = true

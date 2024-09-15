@@ -13,7 +13,7 @@ func place(word_object: WordObject) -> void:
 	target = word_object
 	
 	target.placing = true
-	target.global_position = Vector2()
+	target.global_position = Vector2(-1000, -1000)
 	var first_place: bool = true
 	while first_place or len(target.colliding) > 0:
 		first_place = false
