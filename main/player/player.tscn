@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhbw1ggbqmgw"]
+[gd_scene load_steps=6 format=3 uid="uid://bhbw1ggbqmgw"]
 
 [ext_resource type="Script" path="res://main/player/player.gd" id="1_8prs4"]
 [ext_resource type="Texture2D" uid="uid://b56pfj42cgnn2" path="res://main/player/player.png" id="2_en7xm"]
+[ext_resource type="AudioStream" uid="uid://tqxbb6ihqkyw" path="res://main/player/jump.wav" id="3_3lnb3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ttb4"]
 radius = 16.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r2862"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_3lnb3")
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -19,9 +25,13 @@ push_force = 32.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.636916, 0.875219, 0.907578, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_en7xm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0ttb4")
+
+[node name="JumpPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_r2862")
+volume_db = -8.0
