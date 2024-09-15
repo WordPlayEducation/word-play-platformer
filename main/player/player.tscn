@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhbw1ggbqmgw"]
+[gd_scene load_steps=9 format=3 uid="uid://bhbw1ggbqmgw"]
 
 [ext_resource type="Script" path="res://main/player/player.gd" id="1_8prs4"]
+[ext_resource type="Texture2D" uid="uid://bnt5iad57waf" path="res://main/circle.png" id="2_5ww18"]
 [ext_resource type="Texture2D" uid="uid://b56pfj42cgnn2" path="res://main/player/player.png" id="2_en7xm"]
+[ext_resource type="AudioStream" uid="uid://tqxbb6ihqkyw" path="res://main/player/jump.wav" id="3_3lnb3"]
+
+[sub_resource type="Curve" id="Curve_kgvvh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.121622, 1), 0.0, 0.0, 0, 0, Vector2(0.618919, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_gk3e5"]
+offsets = PackedFloat32Array(0, 0.315287)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ttb4"]
 radius = 16.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r2862"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_3lnb3")
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -12,16 +27,38 @@ collision_mask = 5
 floor_block_on_wall = false
 script = ExtResource("1_8prs4")
 speed = 288
-jump_speed = -820
+jump_speed = -760
+gravity = 3200
 friction = 0.7
 acceleration = 0.7
 push_force = 32.0
 
+[node name="WalkParticles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 10)
+amount = 24
+lifetime = 0.5
+speed_scale = 2.0
+texture = ExtResource("2_5ww18")
+direction = Vector2(0, -1)
+gravity = Vector2(0, 48)
+initial_velocity_min = 4.0
+initial_velocity_max = 32.0
+scale_amount_min = 0.1
+scale_amount_max = 0.15
+scale_amount_curve = SubResource("Curve_kgvvh")
+color = Color(1, 1, 1, 0.317647)
+color_ramp = SubResource("Gradient_gk3e5")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.636916, 0.875219, 0.907578, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_en7xm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0ttb4")
+
+[node name="JumpPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_r2862")
+volume_db = -8.0

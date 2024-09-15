@@ -26,4 +26,4 @@ func _on_timeout() -> void:
 	tween.tween_property(self, "visible_ratio", 1.0, 0.4)
 
 func start_timer() -> void:
-	%Timer.start(len(sentence) * 0.3 + 3.0)
+	%Timer.start(len(sentence) * 0.2 + 2.0)

@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if Input.is_action_just_pressed("jump") and (double_jump or is_on_floor()):
 		velocity.y = jump_speed
+		%JumpPlayer.play()
 	for i in get_slide_collision_count():
 		var c: KinematicCollision2D = get_slide_collision(i)
 		

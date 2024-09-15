@@ -45,4 +45,7 @@ offset_top = 118.0
 offset_right = 382.0
 offset_bottom = 163.0
 
+[node name="Goal" parent="." index="7"]
+position = Vector2(735, 353)
+
 [editable path="Recognizer"]

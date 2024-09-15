@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://yq6s3bigf7wr"]
+
+[ext_resource type="PackedScene" uid="uid://bdgi21enh22hp" path="res://main/level/level.tscn" id="1_daiw4"]
+[ext_resource type="Texture2D" uid="uid://dmy4h3va8t3ip" path="res://main/assets/left_bridge.png" id="2_67evr"]
+[ext_resource type="Texture2D" uid="uid://d230cmjle6fns" path="res://main/assets/right_bridge.png" id="3_eff27"]
+[ext_resource type="PackedScene" uid="uid://dy7cifdxv74yg" path="res://main/ui/story_label.tscn" id="4_cx6nu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60cri"]
+size = Vector2(200, 64)
+
+[node name="Level2" instance=ExtResource("1_daiw4")]
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.2345, 0.294175, 0.35, 1)
+
+[node name="LeftBridge" type="Sprite2D" parent="." index="1"]
+modulate = Color(0.1809, 0.226935, 0.27, 1)
+position = Vector2(126.1, 244.9)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_67evr")
+
+[node name="RightBridge" type="Sprite2D" parent="." index="2"]
+modulate = Color(0.1809, 0.226935, 0.27, 1)
+position = Vector2(676.8, 238.9)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_eff27")
+
+[node name="BasicTileMapLayer" parent="." index="4"]
+tile_map_data = PackedByteArray()
+
+[node name="Goal" parent="." index="6"]
+position = Vector2(716.8, 296.9)
+
+[node name="Entrance" parent="." index="7"]
+position = Vector2(74.1, 266.9)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="8"]
+position = Vector2(138.1, 324.9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(-40, 29)
+shape = SubResource("RectangleShape2D_60cri")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="9"]
+position = Vector2(720.8, 324.9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
+position = Vector2(-40, 29)
+shape = SubResource("RectangleShape2D_60cri")
+
+[node name="StoryLabel" parent="." index="10" instance=ExtResource("4_cx6nu")]
+offset_left = 117.0
+offset_top = 94.0
+offset_right = 390.0
+offset_bottom = 139.0
+sentences = Array[String](["Ahh! The bridge is broken!", "Maybe something can carry me across?"])

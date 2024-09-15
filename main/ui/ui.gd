@@ -3,9 +3,11 @@ class_name UI extends MarginContainer
 var generating: bool = false
 
 func _ready() -> void:
-	%Entry.text_submitted.connect(_prompt_entered)
+	%Button.pressed.connect(_prompt_entered)
 
-func _prompt_entered(word: String) -> void:
+func _prompt_entered() -> void:
+	%ClickPlayer.play()
+	%Button.disabled = true
 	if generating:
 		return
 	%Entry.release_focus()
@@ -13,10 +15,11 @@ func _prompt_entered(word: String) -> void:
 	
 	%Entry.editable = false
 	
-	var word_object: WordObject = await Ref.creator.create_object(word)
+	var word_object: WordObject = await Ref.creator.create_object(%Entry.text)
 	
 	if word_object:
 		await Ref.placer.place(word_object)
 	
 	%Entry.editable = true
+	%Button.disabled = false
 	generating = false

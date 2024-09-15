@@ -24,7 +24,7 @@ func _on_request_completed2(result: int, response_code: int, headers: PackedStri
 	data_gotten2.emit(json.data)
 
 func create_object(word: String) -> WordObject:
-	request("http://127.0.0.1:5000/classify_object?user_prompt=\"%s\"" % word)
+	request("http://127.0.0.1:5000/classify_object?user_prompt=\"%s\"" % word.replace(" ", "_"))
 	var ai_response: Variant = await data_gotten
 	print(ai_response)
 	
@@ -130,9 +130,9 @@ func clean_string(s: String) -> String:
 
 func ask(question: String, answer: String) -> bool:
 	print(question, " " ,answer)
-	%Asker.request("http://127.0.0.1:5000/binary_question?level_prompt=\"%s\"&user_prompt=\"%s\"" % [question, answer])
+	%Asker.request("http://127.0.0.1:5000/binary_question?level_prompt=\"%s\"&user_prompt=\"%s\"" % [question, answer.replace(" ", "_")])
 	var ai_response: Variant = await data_gotten2
 	print(ai_response)
-	if "binary_response" in ai_response:
+	if ai_response and "binary_response" in ai_response:
 		return ai_response["binary_response"]
 	return false
