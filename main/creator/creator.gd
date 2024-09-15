@@ -6,17 +6,38 @@ var life_type = preload("res://main/word_object/life/life.tscn")
 
 var i: int =  0
 
+signal data_gotten(data: Variant)
+
+func _ready() -> void:
+	request_completed.connect(_on_request_completed)
+
+func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: JSON = JSON.new()
+	json.parse(body.get_string_from_utf8())
+	data_gotten.emit(json.data)
+
 func create_object(word: String) -> WordObject:
-	var ai_response: Dictionary = TestCases.retrieve()[i]
-	word = ai_response.text
+	request("http://127.0.0.1:5000/classify_object?user_prompt=\"%s\"" % word)
+	var ai_response: Variant = await data_gotten
+	print(ai_response)
 	
-	i += 1
+	if not ai_response or len(ai_response) <= 1:
+		return null
 	
 	var word_obj: WordObject = null
-	if "type" not in ai_response: return null
+	if not ("type" in ai_response or "Type" in ai_response): return null
 	
 	# Instantiating and adding type specific properties to the word object
-	match ai_response["type"]:
+	var type: String
+	if "Type" in ai_response:
+		type = ai_response["Type"]
+	elif "type" in ai_response:
+		type = ai_response["type"]
+	else:
+		type = "inanimate_solid"
+	type = type.replace(" ", "_")
+	print(type)
+	match type:
 		"fluid":
 			word_obj = fluid_type.instantiate()
 			configure_fluid(word_obj, ai_response)
@@ -26,11 +47,17 @@ func create_object(word: String) -> WordObject:
 		"life":
 			word_obj = life_type.instantiate()
 			configure_life(word_obj, ai_response)
+		_:
+			word_obj = inanimate_solid_type.instantiate()
+			configure_inanimate_object(word_obj, ai_response)
+		
 
 	
 	# Adding non-type specific properties
 	for property in ai_response:
 		var value: String = ai_response[property]
+		
+		property = clean_string(property)
 		
 		# Non-specific properties
 		match property:
@@ -56,12 +83,16 @@ func configure_fluid(obj: WordObject, ai_response: Dictionary):
 	for property in ai_response:
 		var value = ai_response[property]
 		
+		property = clean_string(property)
+		
 		pass
 
 # Adding inanimate object specific properties
 func configure_inanimate_object(obj: WordObject, ai_response: Dictionary):
 	for property in ai_response:
 		var value = ai_response[property]
+		
+		property = clean_string(property)
 		
 		# Type specific properties
 		match property:
@@ -74,11 +105,16 @@ func configure_life(obj: WordObject, ai_response: Dictionary):
 	for property in ai_response:
 		var value = ai_response[property]
 		
+		property = clean_string(property)
+		
 		# Type-specific properties
 		match property:
 			"movement_type":
 				if value not in ["land", "air", "fluid"]: break
 				obj.movement_type = value
+
+func clean_string(s: String) -> String:
+	return s.replace(" ", "_").to_lower()
 
 func ask(question: String, answer: String) -> bool:
 	return true

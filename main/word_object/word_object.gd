@@ -38,6 +38,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		%Area2D.position = Vector2()
 
 func initialize() -> void:
+	print(size_and_shape)
 	match size_and_shape:
 		"wide":
 			size = Vector2(64, 32)

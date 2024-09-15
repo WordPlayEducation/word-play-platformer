@@ -1,10 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkifirvysl48n"]
+[gd_scene load_steps=12 format=3 uid="uid://dkifirvysl48n"]
 
 [ext_resource type="Script" path="res://main/goal/goal.gd" id="1_jlfh8"]
 [ext_resource type="Texture2D" uid="uid://bu27cyd527fne" path="res://main/pixel.png" id="2_qvsk5"]
+[ext_resource type="Texture2D" uid="uid://bnt5iad57waf" path="res://main/circle.png" id="3_cwxlp"]
+[ext_resource type="FontFile" uid="uid://dsfgqxm0h10rb" path="res://main/word_object/patrick_hand.ttf" id="4_587b8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_08kwu"]
 radius = 32.0
+
+[sub_resource type="Animation" id="Animation_o0ruo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_x7gxi"]
+resource_name = "be"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pur56"]
+_data = {
+"RESET": SubResource("Animation_o0ruo"),
+"be": SubResource("Animation_x7gxi")
+}
+
+[sub_resource type="Curve" id="Curve_7bnh2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.178378, 1), 0.0, 0.0, 0, 0, Vector2(0.878378, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_xe3t7"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.00784314)
+
+[sub_resource type="FontVariation" id="FontVariation_uy17y"]
+base_font = ExtResource("4_587b8")
 
 [node name="Goal" type="Area2D"]
 collision_layer = 8
@@ -17,3 +66,30 @@ shape = SubResource("CircleShape2D_08kwu")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(32, 32)
 texture = ExtResource("2_qvsk5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_pur56")
+}
+autoplay = "be"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 32
+texture = ExtResource("3_cwxlp")
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(0, -420)
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_7bnh2")
+color_ramp = SubResource("Gradient_xe3t7")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -12.0
+offset_top = -11.0
+offset_right = 28.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0.603923, 0.603923, 0.603923, 1)
+theme_override_fonts/font = SubResource("FontVariation_uy17y")
+text = "Goal"

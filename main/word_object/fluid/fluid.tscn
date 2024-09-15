@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnll4ag3dbst6"]
+[gd_scene load_steps=5 format=3 uid="uid://cnll4ag3dbst6"]
 
 [ext_resource type="PackedScene" uid="uid://m4r5mn8cdw3p" path="res://main/word_object/word_object.tscn" id="1_hnmv3"]
 [ext_resource type="Script" path="res://main/word_object/fluid/fluid.gd" id="2_rn450"]
+[ext_resource type="Shader" path="res://main/word_object/fluid/fluid.gdshader" id="3_gawcu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ynvf"]
+shader = ExtResource("3_gawcu")
 
 [node name="Fluid" instance=ExtResource("1_hnmv3")]
 collision_layer = 0
 collision_mask = 1
 script = ExtResource("2_rn450")
+
+[node name="Sprite2D" parent="Area2D" index="2"]
+material = SubResource("ShaderMaterial_8ynvf")
 
 [node name="Label" parent="Area2D/MarginContainer" index="0"]
 text = "[wave amp=50.0][shake][center]table"

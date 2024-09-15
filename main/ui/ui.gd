@@ -15,7 +15,8 @@ func _prompt_entered(word: String) -> void:
 	
 	var word_object: WordObject = await Ref.creator.create_object(word)
 	
-	await Ref.placer.place(word_object)
+	if word_object:
+		await Ref.placer.place(word_object)
 	
 	%Entry.editable = true
 	generating = false
