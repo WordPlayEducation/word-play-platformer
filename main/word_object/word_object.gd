@@ -63,8 +63,14 @@ func initialize() -> void:
 	%Label.size = size
 	
 	%Label.text = "[shake rate=%.2f][center] %s" % [dynamic + 0.1 * 20.0, text]
+	%Label2.text = (text + " ").repeat(32)
+	%Label2.custom_minimum_size = size
+	%Label2.size = size
+	%Label2.modulate = color
+	#%Label2.modulate.a = 0.3
+	%Label2.visible = false
 	%Sprite2D.modulate = color
-	%Sprite2D.modulate.a = 0.5
+	%Sprite2D.modulate.a = 0.6
 
 func move_to(new_position: Vector2) -> void:
 	%Area2D.global_position = new_position

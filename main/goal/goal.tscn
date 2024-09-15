@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkifirvysl48n"]
+[gd_scene load_steps=13 format=3 uid="uid://dkifirvysl48n"]
 
 [ext_resource type="Script" path="res://main/goal/goal.gd" id="1_jlfh8"]
 [ext_resource type="Texture2D" uid="uid://bu27cyd527fne" path="res://main/pixel.png" id="2_qvsk5"]
 [ext_resource type="Texture2D" uid="uid://bnt5iad57waf" path="res://main/circle.png" id="3_cwxlp"]
 [ext_resource type="FontFile" uid="uid://dsfgqxm0h10rb" path="res://main/word_object/patrick_hand.ttf" id="4_587b8"]
+[ext_resource type="Texture2D" uid="uid://ci6dd2p4u5wi8" path="res://main/goal/light.webp" id="5_1wiir"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_08kwu"]
 radius = 32.0
@@ -75,6 +76,7 @@ libraries = {
 autoplay = "be"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-1, 0)
 amount = 32
 texture = ExtResource("3_cwxlp")
 emission_shape = 1
@@ -86,10 +88,16 @@ scale_amount_curve = SubResource("Curve_7bnh2")
 color_ramp = SubResource("Gradient_xe3t7")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -12.0
+offset_left = -13.0
 offset_top = -11.0
-offset_right = 28.0
+offset_right = 27.0
 offset_bottom = 12.0
-theme_override_colors/font_color = Color(0.603923, 0.603923, 0.603923, 1)
+theme_override_colors/font_color = Color(0.265361, 0.265361, 0.26536, 1)
 theme_override_fonts/font = SubResource("FontVariation_uy17y")
 text = "Goal"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.4
+range_layer_min = -4
+range_layer_max = 4
+texture = ExtResource("5_1wiir")

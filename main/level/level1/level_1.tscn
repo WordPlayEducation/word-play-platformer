@@ -1,14 +1,71 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmm8dctkge5b"]
+[gd_scene load_steps=9 format=4 uid="uid://cmm8dctkge5b"]
 
 [ext_resource type="PackedScene" uid="uid://bdgi21enh22hp" path="res://main/level/level.tscn" id="1_ig0il"]
+[ext_resource type="Texture2D" uid="uid://cprnb42ok8c3u" path="res://main/assets/door.png" id="2_8qbb5"]
+[ext_resource type="Texture2D" uid="uid://bnxqjikbu56qa" path="res://main/assets/bunk-bed.png" id="2_gvnjp"]
+[ext_resource type="Texture2D" uid="uid://cplfunyttjvxf" path="res://main/assets/long-window.png" id="3_i2iwu"]
+[ext_resource type="Texture2D" uid="uid://dbu5rqfoewmmj" path="res://main/assets/table.png" id="3_smk62"]
+[ext_resource type="Texture2D" uid="uid://lc2k58r7a1ol" path="res://main/assets/lamp.png" id="5_365tn"]
+[ext_resource type="PackedScene" uid="uid://dy7cifdxv74yg" path="res://main/ui/story_label.tscn" id="7_bghs6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw4va"]
+size = Vector2(700, 700)
 
 [node name="Level1" instance=ExtResource("1_ig0il")]
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(0.395163, 0.181695, 0.138378, 1)
+modulate = Color(0.36, 0.1404, 0.20628, 1)
 
-[node name="BasicTileMapLayer" parent="." index="1"]
+[node name="Door" type="Sprite2D" parent="." index="1"]
+visible = false
+position = Vector2(10, 320)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_8qbb5")
+
+[node name="Lamp2" type="Sprite2D" parent="." index="2"]
+modulate = Color(0.31, 0.0992, 0.16244, 1)
+position = Vector2(287, 176)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_i2iwu")
+
+[node name="Table" type="Sprite2D" parent="." index="3"]
+modulate = Color(0.31, 0.0992, 0.16244, 1)
+position = Vector2(160.6, 360.8)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_smk62")
+
+[node name="BasicTileMapLayer" parent="." index="5"]
 modulate = Color(0.245495, 0.0798674, 0.130152, 1)
+tile_map_data = PackedByteArray("AAAAAA8AAAAAAAAAAAABAA8AAAAAAAAAAAACAA8AAAAAAAAAAAADAA8AAAAAAAAAAAAEAA8AAAAAAAAAAAAFAA8AAAAAAAAAAAAGAA8AAAAAAAAAAAAHAA8AAAAAAAAAAAAIAA8AAAAAAAAAAAAJAA8AAAAAAAAAAAAKAA8AAAAAAAAAAAALAA8AAAAAAAAAAAASAA8AAAAAAAAAAAATAA8AAAAAAAAAAAAUAA8AAAAAAAAAAAAVAA8AAAAAAAAAAAAWAA8AAAAAAAAAAAAXAA8AAAAAAAAAAAAXAA4AAAAAAAAAAAAWAA4AAAAAAAAAAAAVAA4AAAAAAAAAAAAUAA4AAAAAAAAAAAATAA4AAAAAAAAAAAASAA4AAAAAAAAAAAALAA4AAAAAAAAAAAAKAA4AAAAAAAAAAAAJAA4AAAAAAAAAAAAIAA4AAAAAAAAAAAAHAA4AAAAAAAAAAAAGAA4AAAAAAAAAAAAFAA4AAAAAAAAAAAAEAA4AAAAAAAAAAAADAA4AAAAAAAAAAAACAA4AAAAAAAAAAAABAA4AAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAABAA0AAAAAAAAAAAACAA0AAAAAAAAAAAAAAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAEAAwAAAAAAAAAAAADAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAA0AAAAAAAAAAAAEAA0AAAAAAAAAAAALAAwAAAAAAAAAAAAMAA4AAAAAAAAAAAANAA4AAAAAAAAAAAAOAA4AAAAAAAAAAAAMAA8AAAAAAAAAAAANAA8AAAAAAAAAAAAOAA8AAAAAAAAAAAAPAA8AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAA4AAAAAAAAAAAARAA4AAAAAAAAAAAAQAA8AAAAAAAAAAAARAA8AAAAAAAAAAAAOAA0AAAAAAAAAAAAOAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAJAA0AAAAAAAAAAAASAA0AAAAAAAAAAAASAAwAAAAAAAAAAAAFAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAFAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAKAA0AAAAAAAAAAAAKAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAMAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAARAA0AAAAAAAAAAAATAA0AAAAAAAAAAAAUAA0AAAAAAAAAAAAVAA0AAAAAAAAAAAAWAA0AAAAAAAAAAAAXAA0AAAAAAAAAAAAVAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAATAAwAAAAAAAAAAAARAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAWAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAIAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAA=")
 
-[node name="Goal" parent="." index="2"]
-position = Vector2(642, 281)
+[node name="Goal" parent="." index="7"]
+position = Vector2(617, 344)
+
+[node name="Bunk-bed" type="Sprite2D" parent="." index="8"]
+modulate = Color(0.799515, 0.38368, 0.550831, 1)
+position = Vector2(383, 295)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_gvnjp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bunk-bed" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bunk-bed/StaticBody2D" index="0"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_xw4va")
+
+[node name="Lamp" type="Sprite2D" parent="." index="9"]
+modulate = Color(0.31, 0.0992, 0.16244, 1)
+position = Vector2(554, 285)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_365tn")
+
+[node name="StoryLabel" parent="." index="10" instance=ExtResource("7_bghs6")]
+offset_left = 72.0
+offset_top = 52.0
+offset_right = 209.0
+offset_bottom = 97.0
+text = "aaaaaaa"
+sentences = Array[String](["Who put this bed here?!", "I need to get across..."])
+
+[node name="Entrance" parent="." index="11"]
+position = Vector2(99, 341)

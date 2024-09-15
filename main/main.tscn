@@ -1,6 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://jmbngirn2bc"]
+[gd_scene load_steps=15 format=3 uid="uid://jmbngirn2bc"]
 
 [ext_resource type="PackedScene" uid="uid://bhbw1ggbqmgw" path="res://main/player/player.tscn" id="1_kiugf"]
+[ext_resource type="PackedScene" uid="uid://bqhq7kdboju0g" path="res://main/level/level3/level_3.tscn" id="2_d1idd"]
+[ext_resource type="PackedScene" uid="uid://yq6s3bigf7wr" path="res://main/level/level2/level_2.tscn" id="2_w0bts"]
 [ext_resource type="PackedScene" uid="uid://n6bgkipyc2qp" path="res://main/level/level0/level_0.tscn" id="2_y5ymt"]
 [ext_resource type="Script" path="res://main/placer.gd" id="3_1iut8"]
 [ext_resource type="PackedScene" uid="uid://cmm8dctkge5b" path="res://main/level/level1/level_1.tscn" id="3_g0fei"]
@@ -10,12 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://bkdd465gjmk3s" path="res://main/level/JazzBrunch.mp3" id="8_wxwom"]
 [ext_resource type="Shader" path="res://main/vignette.gdshader" id="9_pr2ff"]
 [ext_resource type="Shader" path="res://main/godrays.gdshader" id="10_n0da3"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2g3rd"]
-shader = ExtResource("9_pr2ff")
-shader_parameter/vignette_intensity = 0.1
-shader_parameter/vignette_opacity = 0.5
-shader_parameter/vignette_rgb = Color(0.16584, 0.1082, 0.260375, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_howha"]
 shader = ExtResource("10_n0da3")
@@ -29,16 +25,22 @@ shader_parameter/speed = 1.0
 shader_parameter/ray1_density = 8.0
 shader_parameter/ray2_density = 30.0
 shader_parameter/ray2_intensity = 0.3
-shader_parameter/color = Color(1, 0.977333, 0.92, 0.121569)
+shader_parameter/color = Color(1, 0.977333, 0.92, 0.0666667)
 shader_parameter/hdr = true
 shader_parameter/seed = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2g3rd"]
+shader = ExtResource("9_pr2ff")
+shader_parameter/vignette_intensity = 0.1
+shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_rgb = Color(0.16584, 0.1082, 0.260375, 1)
 
 [node name="Main" type="Node"]
 
 [node name="LevelManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_or2u5")
-levels = Array[PackedScene]([ExtResource("2_y5ymt"), ExtResource("3_g0fei")])
+levels = Array[PackedScene]([ExtResource("2_y5ymt"), ExtResource("3_g0fei"), ExtResource("2_d1idd"), ExtResource("2_w0bts")])
 
 [node name="WordObjects" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -58,12 +60,14 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("3_1iut8")
 
-[node name="UI" parent="." instance=ExtResource("3_kob5o")]
-unique_name_in_owner = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_wxwom")
-autoplay = true
+[node name="GodRays" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_howha")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Vignette" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_2g3rd")
@@ -74,11 +78,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="GodRays" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_howha")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="UI" parent="." instance=ExtResource("3_kob5o")]
+unique_name_in_owner = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_wxwom")
+autoplay = true

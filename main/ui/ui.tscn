@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmocbja62vbhh"]
+[gd_scene load_steps=7 format=3 uid="uid://dmocbja62vbhh"]
 
 [ext_resource type="Script" path="res://main/ui/ui.gd" id="1_wwf5g"]
+[ext_resource type="AudioStream" uid="uid://bdvh8rouxlpl4" path="res://main/ui/cclick.wav" id="2_6uxog"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wymse"]
 bg_color = Color(1, 1, 1, 1)
@@ -46,6 +47,11 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_eg6n8"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("2_6uxog")
+
 [node name="UI" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,12 +67,22 @@ script = ExtResource("1_wwf5g")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Type in any word: "
 
-[node name="Entry" type="LineEdit" parent="HBoxContainer"]
+[node name="Entry" type="LineEdit" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -77,10 +93,17 @@ theme_override_colors/font_color = Color(0.386757, 0.386757, 0.386757, 1)
 theme_override_styles/focus = SubResource("StyleBoxFlat_wymse")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_viuwc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_r3caf")
-placeholder_text = "Ex.: Dog"
+placeholder_text = "Type any word..."
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
 text = "Create"
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_eg6n8")
+volume_db = -8.0

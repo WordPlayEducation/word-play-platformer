@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=4 uid="uid://bqhq7kdboju0g"]
+
+[ext_resource type="PackedScene" uid="uid://bdgi21enh22hp" path="res://main/level/level.tscn" id="1_77d17"]
+[ext_resource type="Texture2D" uid="uid://dmy4h3va8t3ip" path="res://main/assets/left_bridge.png" id="2_52epc"]
+[ext_resource type="Texture2D" uid="uid://d230cmjle6fns" path="res://main/assets/right_bridge.png" id="3_muugx"]
+[ext_resource type="PackedScene" uid="uid://dy7cifdxv74yg" path="res://main/ui/story_label.tscn" id="4_r4uai"]
+[ext_resource type="Texture2D" uid="uid://ystqv5c2qyll" path="res://main/assets/long-divided-window.png" id="5_cljbr"]
+[ext_resource type="Texture2D" uid="uid://cho2bdjh6uhku" path="res://main/assets/couch.png" id="6_gqk3i"]
+[ext_resource type="PackedScene" uid="uid://bhxmtcv40q5jg" path="res://main/recognizer/recognizer.tscn" id="7_1cakt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60cri"]
+size = Vector2(200, 64)
+
+[node name="Level3" instance=ExtResource("1_77d17")]
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.35, 0.34615, 0.2345, 1)
+
+[node name="LeftBridge" type="Sprite2D" parent="." index="1"]
+visible = false
+modulate = Color(0.244755, 0.27, 0.1809, 1)
+position = Vector2(126.1, 244.9)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_52epc")
+
+[node name="RightBridge" type="Sprite2D" parent="." index="2"]
+visible = false
+modulate = Color(0.1809, 0.226935, 0.27, 1)
+position = Vector2(676.8, 238.9)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_muugx")
+
+[node name="BasicTileMapLayer" parent="." index="4"]
+modulate = Color(0.22, 0.205333, 0.132, 1)
+tile_map_data = PackedByteArray("AAAAAA8AAAAAAAAAAAABAA8AAAAAAAAAAAACAA8AAAAAAAAAAAADAA8AAAAAAAAAAAAEAA8AAAAAAAAAAAAFAA8AAAAAAAAAAAAGAA8AAAAAAAAAAAAHAA8AAAAAAAAAAAAIAA8AAAAAAAAAAAAJAA8AAAAAAAAAAAAKAA8AAAAAAAAAAAALAA8AAAAAAAAAAAASAA8AAAAAAAAAAAATAA8AAAAAAAAAAAAUAA8AAAAAAAAAAAAVAA8AAAAAAAAAAAAWAA8AAAAAAAAAAAAXAA8AAAAAAAAAAAAXAA4AAAAAAAAAAAAWAA4AAAAAAAAAAAAVAA4AAAAAAAAAAAAUAA4AAAAAAAAAAAATAA4AAAAAAAAAAAASAA4AAAAAAAAAAAALAA4AAAAAAAAAAAAKAA4AAAAAAAAAAAAJAA4AAAAAAAAAAAAIAA4AAAAAAAAAAAAHAA4AAAAAAAAAAAAGAA4AAAAAAAAAAAAFAA4AAAAAAAAAAAAEAA4AAAAAAAAAAAADAA4AAAAAAAAAAAACAA4AAAAAAAAAAAABAA4AAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAABAA0AAAAAAAAAAAACAA0AAAAAAAAAAAAAAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAEAAwAAAAAAAAAAAADAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAA0AAAAAAAAAAAAEAA0AAAAAAAAAAAALAAwAAAAAAAAAAAAMAA4AAAAAAAAAAAANAA4AAAAAAAAAAAAOAA4AAAAAAAAAAAAMAA8AAAAAAAAAAAANAA8AAAAAAAAAAAAOAA8AAAAAAAAAAAAPAA8AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAA4AAAAAAAAAAAARAA4AAAAAAAAAAAAQAA8AAAAAAAAAAAARAA8AAAAAAAAAAAAOAA0AAAAAAAAAAAAOAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAJAA0AAAAAAAAAAAASAA0AAAAAAAAAAAASAAwAAAAAAAAAAAAFAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAFAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAKAA0AAAAAAAAAAAAKAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAMAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAARAA0AAAAAAAAAAAATAA0AAAAAAAAAAAAUAA0AAAAAAAAAAAAVAA0AAAAAAAAAAAAWAA0AAAAAAAAAAAAXAA0AAAAAAAAAAAAVAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAATAAwAAAAAAAAAAAARAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAWAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAIAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAD//w8AAAAAAAAAAAA=")
+
+[node name="Goal" parent="." index="6"]
+position = Vector2(698, 360)
+
+[node name="Entrance" parent="." index="7"]
+position = Vector2(74.1, 266.9)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="8"]
+position = Vector2(125, 567)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(-40, 29)
+shape = SubResource("RectangleShape2D_60cri")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="9"]
+position = Vector2(707.7, 567)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
+position = Vector2(-40, 29)
+shape = SubResource("RectangleShape2D_60cri")
+
+[node name="StoryLabel" parent="." index="10" instance=ExtResource("4_r4uai")]
+offset_left = 104.0
+offset_top = 71.0
+offset_right = 377.0
+offset_bottom = 116.0
+sentences = Array[String](["Oh hi pal!", "Hmm... maybe they could use a friend?"])
+
+[node name="Long-divided-window" type="Sprite2D" parent="." index="11"]
+modulate = Color(0.298039, 0.294118, 0.2, 1)
+position = Vector2(532, 197)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_cljbr")
+
+[node name="Couch" type="Sprite2D" parent="." index="12"]
+modulate = Color(0.34, 0.3179, 0.2074, 1)
+position = Vector2(175, 324)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_gqk3i")
+
+[node name="Recognizer" parent="." index="13" instance=ExtResource("7_1cakt")]
+modulate = Color(0.7, 0.6923, 0.469, 1)
+position = Vector2(592, 353)
+question = "companion"
