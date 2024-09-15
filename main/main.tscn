@@ -27,6 +27,9 @@ position = Vector2(125, 163)
 unique_name_in_owner = true
 script = ExtResource("4_exasg")
 
+[node name="Asker" type="HTTPRequest" parent="Creator"]
+unique_name_in_owner = true
+
 [node name="Placer" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_1iut8")

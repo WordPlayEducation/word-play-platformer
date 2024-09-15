@@ -10,7 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body = body.get_parent()
 	if not body is WordObject:
 		return
-	if Ref.creator.ask(question, body.text):
+	if await Ref.creator.ask(question, body.text):
 		kill.call_deferred()
 
 func kill() -> void:

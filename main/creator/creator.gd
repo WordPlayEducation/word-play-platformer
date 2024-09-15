@@ -7,14 +7,21 @@ var life_type = preload("res://main/word_object/life/life.tscn")
 var i: int =  0
 
 signal data_gotten(data: Variant)
+signal data_gotten2(data: Variant)
 
 func _ready() -> void:
 	request_completed.connect(_on_request_completed)
+	%Asker.request_completed.connect(_on_request_completed2)
 
 func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json: JSON = JSON.new()
 	json.parse(body.get_string_from_utf8())
 	data_gotten.emit(json.data)
+
+func _on_request_completed2(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	var json: JSON = JSON.new()
+	json.parse(body.get_string_from_utf8())
+	data_gotten2.emit(json.data)
 
 func create_object(word: String) -> WordObject:
 	request("http://127.0.0.1:5000/classify_object?user_prompt=\"%s\"" % word)
@@ -36,7 +43,6 @@ func create_object(word: String) -> WordObject:
 	else:
 		type = "inanimate_solid"
 	type = type.replace(" ", "_")
-	print(type)
 	match type:
 		"fluid":
 			word_obj = fluid_type.instantiate()
@@ -123,4 +129,10 @@ func clean_string(s: String) -> String:
 	return s.replace(" ", "_").to_lower()
 
 func ask(question: String, answer: String) -> bool:
-	return true
+	print(question, " " ,answer)
+	%Asker.request("http://127.0.0.1:5000/binary_question?level_prompt=\"%s\"&user_prompt=\"%s\"" % [question, answer])
+	var ai_response: Variant = await data_gotten2
+	print(ai_response)
+	if "binary_response" in ai_response:
+		return ai_response["binary_response"]
+	return false
