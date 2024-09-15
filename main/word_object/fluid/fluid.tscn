@@ -21,7 +21,7 @@ viscosity = 0.0
 z_index = 1
 material = SubResource("ShaderMaterial_8ynvf")
 
-[node name="Label" parent="Area2D/MarginContainer" index="0"]
+[node name="Label" parent="Area2D/MarginContainer" index="1"]
 text = "[wave amp=50.0][shake][center]table"
 
 [node name="Cover" parent="Area2D" index="4"]

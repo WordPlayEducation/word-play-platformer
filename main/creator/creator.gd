@@ -81,6 +81,7 @@ func create_object(word: String) -> WordObject:
 				if value not in ["wide", "tall", "small", "big"]: break
 				word_obj.size_and_shape = value
 	word_obj.text = word
+	%CashPlayer.play()
 	return word_obj
 
 

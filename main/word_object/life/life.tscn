@@ -16,7 +16,7 @@ script = ExtResource("2_3b5jk")
 movement_type = "land"
 activity = 0.5
 
-[node name="Label" parent="Area2D/MarginContainer" index="0"]
+[node name="Label" parent="Area2D/MarginContainer" index="1"]
 text = "[shake][center]dog"
 
 [node name="CollisionShape2D" parent="." index="1"]

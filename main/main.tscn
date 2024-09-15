@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://jmbngirn2bc"]
+[gd_scene load_steps=24 format=3 uid="uid://jmbngirn2bc"]
 
 [ext_resource type="PackedScene" uid="uid://bhbw1ggbqmgw" path="res://main/player/player.tscn" id="1_kiugf"]
 [ext_resource type="PackedScene" uid="uid://bqhq7kdboju0g" path="res://main/level/level3/level_3.tscn" id="2_d1idd"]
@@ -10,10 +10,16 @@
 [ext_resource type="Script" path="res://main/level/level_manager.gd" id="3_or2u5"]
 [ext_resource type="Script" path="res://main/creator/creator.gd" id="4_exasg"]
 [ext_resource type="AudioStream" uid="uid://bkdd465gjmk3s" path="res://main/level/JazzBrunch.mp3" id="8_wxwom"]
+[ext_resource type="AudioStream" uid="uid://cqo2llvuftqy5" path="res://main/creator/register-fake.wav" id="8_yw72h"]
 [ext_resource type="Shader" path="res://main/vignette.gdshader" id="9_pr2ff"]
 [ext_resource type="Shader" path="res://main/godrays.gdshader" id="10_n0da3"]
 [ext_resource type="Shader" path="res://main/ui/transition.gdshader" id="13_g42tm"]
 [ext_resource type="Script" path="res://main/ui/trans.gd" id="14_sh7qw"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wu27r"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("8_yw72h")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_howha"]
 shader = ExtResource("10_n0da3")
@@ -42,20 +48,6 @@ shader = ExtResource("13_g42tm")
 shader_parameter/y_threshold = 0.0
 shader_parameter/tiling = 12.0
 
-[sub_resource type="Animation" id="Animation_7mru0"]
-resource_name = "in"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Trans:material:shader_parameter/y_threshold")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
 [sub_resource type="Animation" id="Animation_h0wtq"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -68,6 +60,20 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_7mru0"]
+resource_name = "in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trans:material:shader_parameter/y_threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="Animation_crxdf"]
@@ -111,6 +117,10 @@ script = ExtResource("4_exasg")
 
 [node name="Asker" type="HTTPRequest" parent="Creator"]
 unique_name_in_owner = true
+
+[node name="CashPlayer" type="AudioStreamPlayer" parent="Creator"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_wu27r")
 
 [node name="Placer" type="Node" parent="."]
 unique_name_in_owner = true

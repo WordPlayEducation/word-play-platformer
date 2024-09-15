@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c405ol61xujvw"
-path="res://.godot/imported/right_bridge.png-201a606e2dadb16d9c0af43c96e10be8.ctex"
+uid="uid://djvsj25lsmtji"
+path="res://.godot/imported/player.png-9326ac0681f90fec3a17dfbf98357923.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/assets/right_bridge.png"
-dest_files=["res://.godot/imported/right_bridge.png-201a606e2dadb16d9c0af43c96e10be8.ctex"]
+source_file="res://main/assets/player.png"
+dest_files=["res://.godot/imported/player.png-9326ac0681f90fec3a17dfbf98357923.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=4 uid="uid://bqhq7kdboju0g"]
 
 [ext_resource type="PackedScene" uid="uid://bdgi21enh22hp" path="res://main/level/level.tscn" id="1_77d17"]
-[ext_resource type="Texture2D" uid="uid://dmy4h3va8t3ip" path="res://main/assets/left_bridge.png" id="2_52epc"]
-[ext_resource type="Texture2D" uid="uid://d230cmjle6fns" path="res://main/assets/right_bridge.png" id="3_muugx"]
+[ext_resource type="Texture2D" uid="uid://dgguitscvlomh" path="res://main/assets/left_bridge.png" id="2_52epc"]
+[ext_resource type="Texture2D" path="res://main/assets/right_bridge.png" id="3_muugx"]
 [ext_resource type="PackedScene" uid="uid://dy7cifdxv74yg" path="res://main/ui/story_label.tscn" id="4_r4uai"]
 [ext_resource type="Texture2D" uid="uid://ystqv5c2qyll" path="res://main/assets/long-divided-window.png" id="5_cljbr"]
 [ext_resource type="Texture2D" uid="uid://cho2bdjh6uhku" path="res://main/assets/couch.png" id="6_gqk3i"]
