@@ -35,4 +35,6 @@ func end_level(next: bool = true) -> void:
 	
 	if next:
 		current_id += 1
+	if current_id >= len(levels):
+		current_id = 0
 	load_level.call_deferred(current_id)
